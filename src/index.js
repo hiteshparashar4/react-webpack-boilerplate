@@ -7,7 +7,10 @@ import './mystyle.scss';
 
 class MyComponent extends React.Component {
 
+    // comment
+    
     render() {
+        console.log('test')
         return (
             <>
                 <Header text="If you are reading this" />

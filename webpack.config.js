@@ -11,9 +11,7 @@ module.exports = {
     // build output
     output: {
 
-        // bundles all the js code into a single file adding hash to the file name
-        // hash is dependent on the contents of the file
-        // if you want to remove the hash from the file name, remove [contenthash]
+        // bundles all the js code into a single file
         filename: 'bundle.js',
 
         // saves the bundled files in the following directory
@@ -71,10 +69,7 @@ module.exports = {
     },
     plugins: [
 
-        // extract all css code into a new file.
-        // adding hash to the file name
-        // hash is dependent on the contents of the file
-        // if you dont need hash in the name, remove [contenthash]
+        // extract all css code into a new file
         new MiniCssExtractPlugin({
             filename: 'styles.css'
         }),
