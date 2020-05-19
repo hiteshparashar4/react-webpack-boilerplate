@@ -1,7 +1,7 @@
 {
   "name": "react-webpack-boilerplate",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react webpack based boilerplate code to kickstart your own project",
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
