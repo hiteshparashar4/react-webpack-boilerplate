@@ -4,6 +4,7 @@ import Header from './components/Header/header';
 import Body from './components/Body/body';
 import Footer from './components/Footer/footer';
 import './mystyle.scss';
+import '../assets/favicon.png';
 
 class MyComponent extends React.Component {
 
