@@ -1,15 +1,15 @@
-$color: red;
-
-input {
-    height: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: block;
-    font-size: 20px;
+html, body {
+    padding: 0;
+    margin: 0;
 }
 
-span {
-    font-size: 25px;
-    color: $color;
-    font-weight: bold;
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    height: 100px;
+    padding: 10px;
+    text-align: center;
 }

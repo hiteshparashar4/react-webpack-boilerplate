@@ -14,7 +14,7 @@ module.exports = {
         // bundles all the js code into a single file adding hash to the file name
         // hash is dependent on the contents of the file
         // if you want to remove the hash from the file name, remove [contenthash]
-        filename: 'bundle.[contenthash].js',
+        filename: 'bundle.js',
 
         // saves the bundled files in the following directory
         path: path.resolve(__dirname, './dist'),
@@ -26,7 +26,12 @@ module.exports = {
     // for production builds, comment the following line
     devtool: '#inline-source-map',
 
-    
+    devServer: {
+        contentBase: path.resolve(__dirname, './dist'),
+        index: 'index.html',
+        port: 8085
+    },
+
     module: {
       rules: [
         {
@@ -71,7 +76,7 @@ module.exports = {
         // hash is dependent on the contents of the file
         // if you dont need hash in the name, remove [contenthash]
         new MiniCssExtractPlugin({
-            filename: 'styles.[contenthash].css'
+            filename: 'styles.css'
         }),
 
         // delete everyting from dist folder before each build
