@@ -3,18 +3,18 @@ import ReactDOM from "react-dom";
 import Header from './components/Header/header';
 import Body from './components/Body/body';
 import Footer from './components/Footer/footer';
-import './mystyle.scss';
-import '../assets/favicon.png';
+import './styles/global.scss';
+
 
 class MyComponent extends React.Component {
 
     render() {
         return (
-            <>
-                <Header text="If you are reading this" />
-                <Body text="it means" />
-                <Footer text="you setup works correctly" />
-            </>
+            <div className='main-container'>
+                <Header text="Hi there" />
+                <Body text="If you are reading this it means you setup works correctly" />
+                <Footer text="" />
+            </div>
         );
     }
 

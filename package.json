@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A react webpack based boilerplate code to kickstart your own project",
   "scripts": {
-    "dev": "webpack --mode development",
+    "build:dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --hot",
+    "start": "webpack-dev-server --mode development --hot --open",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
   },

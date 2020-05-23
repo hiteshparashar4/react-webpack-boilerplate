@@ -1,0 +1,13 @@
+$width: 70%;
+$display-flex: flex;
+$flex-direction: column;
+$justify-content: space-around;
+
+.main-container {
+    width: $width;
+    display: $display-flex;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    margin: auto;
+    height: 100vh;
+}

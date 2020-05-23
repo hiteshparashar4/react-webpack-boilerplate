@@ -4,108 +4,118 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+const ip = require("ip");
 
-module.exports = {
-  // that's where the building process starts from
-  entry: "./src/index.js",
+// devserver will run on localhost, to use local ip address instead, set useHostIp flag to true
+const useHostIp = false;
+const host = useHostIp ? ip.address() : "localhost";
+const port = 8085;
+const distDir = path.resolve(__dirname, "./dist");
 
-  // build output
-  output: {
-    // bundles all the js code into a single file
-    filename: "bundle.js",
+module.exports = (env, options) => {
 
-    // saves the bundled files in the following directory
-    path: path.resolve(__dirname, "./dist"),
+  const devtool = options.mode === 'development' ? '#inline-source-map' : 'none';
 
-    publicPath: "",
-  },
+  return {
+    // that's where the building process starts from
+    entry: "./src/index.js",
 
-  devServer: {
-    contentBase: path.resolve(__dirname, "./dist"),
-    index: "index.html",
-    port: 8085,
-  },
+    // build output
+    output: {
+      // bundles all the js code into a single file
+      filename: "bundle.js",
 
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all",
-        },
-      },
+      // saves the bundled files in the following directory
+      path: distDir,
+
+      publicPath: "",
     },
-  },
 
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/env", "@babel/react"],
+    devServer: {
+      contentBase: distDir,
+      index: "index.html",
+      port: port,
+      host: host,
+    },
+
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "all",
           },
         },
       },
-      {
-        test: /\.(png|jpg)$/,
-        exclude: /node_modules/,
-        use: ["file-loader?name=[name].[ext]"],
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-      },
-      {
-        test: /\.xml$/i,
-        use: "raw-loader",
-      },
-      {
-        test: /\.hbs$/i,
-        use: ["handlebars-loader"],
-      },
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/env", "@babel/react"],
+            },
+          },
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|bmp)$/,
+          exclude: /node_modules/,
+          loader: 'file-loader',
+          options: {
+            outputPath: 'static/images',
+          }
+        },
+        {
+          test: /\.(scss|css)$/,
+          exclude: /node_modules/,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
+        {
+          test: /\.xml$/i,
+          use: "raw-loader",
+        },
+        {
+          test: /\.hbs$/i,
+          use: ["handlebars-loader"],
+        },
+      ],
+    },
+    plugins: [
+      // extract all css code into a new file
+      new MiniCssExtractPlugin({
+        filename: "styles.css",
+      }),
+
+      // delete everyting from dist folder before each build
+      new CleanWebpackPlugin(),
+
+      // generates html file in dist folder
+      // if you need to add/modify content in the generated html file, do it in the template file referenced below
+      new HTMLWebpackPlugin({
+        favicon: "./assets/favicon.png",
+
+        // will get copied in the html file
+        title: "MyTitle",
+
+        // will get copied in the html file
+        description: "description",
+
+        // template file using which the final html file will be generated
+        template: "page-template.hbs",
+
+        // name of the generated html file
+        filename: "index.html",
+      }),
+
+      // analyze what is inside your bundle
+      // new BundleAnalyzerPlugin()
     ],
-  },
-  plugins: [
-    // extract all css code into a new file
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-    }),
 
-    // delete everyting from dist folder before each build
-    new CleanWebpackPlugin(),
-
-    // generates html file in dist folder
-    // if you need to add/modify content in the generated html file, do it in the template file referenced below
-    new HTMLWebpackPlugin({
-      favicon: "./assets/favicon.png",
-
-      // will get copied in the html file
-      title: "MyTitle",
-
-      // will get copied in the html file
-      description: "description",
-
-      // template file using which the final html file will be generated
-      template: "page-template.hbs",
-
-      // name of the generated html file
-      filename: "index.html",
-    }),
-
-    // analyze what is inside your bundle
-    // new BundleAnalyzerPlugin()
-  ],
-
-  // to debug the code in browser, uncomment the following line. Use development mode
-  // devtool: '#inline-source-map',
+    devtool: devtool,
+  };
 };

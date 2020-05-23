@@ -1,8 +1,19 @@
 import React from "react";
 import './footer.scss';
+import github from '../../../assets/github.png';
 
-const Footer = ({text}) => {
-    return <h1 style={{backgroundColor: '#86c1dc'}}>{text}</h1>
-}
+const Footer = () => {
+    return (
+        <div className='footer'>
+            <img className='github-icon' src={github} />
+            <a
+            href='https://github.com/hiteshparashar4/react-webpack-boilerplate'
+            rel='noreferrer'
+            target='_blank'>
+                View Source Code
+            </a>
+        </div>
+    );
+};
 
 export default Footer;
