@@ -33,12 +33,12 @@ module.exports = (env, options) => {
       publicPath: "",
     },
 
-    // devServer: {
-    //   contentBase: distDir,
-    //   index: "index.html",
-    //   port: port,
-    //   host: host,
-    // },
+    devServer: {
+      contentBase: distDir,
+      index: "index.html",
+      port: port,
+      host: host,
+    },
 
     optimization: {
       splitChunks: {
