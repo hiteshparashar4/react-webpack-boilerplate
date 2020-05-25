@@ -7,11 +7,12 @@
     "dev": "npm run build:dev",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --hot --open",
-    "lint": "eslint . --ext .js --ext .jsx",
+    "lint": "eslint . --color --ext .js --ext .jsx --max-warnings=0",
     "lint:fix": "npm run lint -- --fix"
   },
   "lint-staged": {
-    "*.js": "npm run lint:fix"
+    "*.js": "npm run lint:fix",
+    "*.jsx": "npm run lint:fix"
   },
   "husky": {
     "hooks": {
