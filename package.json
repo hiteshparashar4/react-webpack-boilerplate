@@ -4,9 +4,10 @@
   "description": "A react webpack based boilerplate code to kickstart your own project",
   "scripts": {
     "build:dev": "webpack --mode development",
+    "dev": "npm run build:dev",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --hot --open",
-    "lint": "eslint .",
+    "lint": "eslint . --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix"
   },
   "lint-staged": {

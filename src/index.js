@@ -12,7 +12,7 @@ class MyComponent extends React.Component {
         return (
             <div className='main-container'>
                 <Header text="Hi there" />
-                <Body text="If you are reading this it means you setup works correctly" />
+                <Body text="If you are reading this it means your setup works correctly" />
                 <Footer text="" />
             </div>
         );

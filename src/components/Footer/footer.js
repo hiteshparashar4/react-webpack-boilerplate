@@ -7,10 +7,10 @@ const Footer = () => {
         <div className='footer'>
             <img className='github-icon' src={github} />
             <a
-            href='https://github.com/hiteshparashar4/react-webpack-boilerplate'
-            rel='noreferrer'
-            target='_blank'>
-                View Source Code
+                href='https://github.com/hiteshparashar4/react-webpack-boilerplate'
+                rel='noreferrer'
+                target='_blank'>
+                    View Source Code
             </a>
         </div>
     );

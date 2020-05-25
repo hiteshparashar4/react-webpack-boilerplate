@@ -6,8 +6,10 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const ip = require("ip");
 
-// devserver will run on localhost, to use local ip address instead, set useHostIp flag to true
+// dev server will run on localhost by default (localhost:8085), to run on local ip address instead, set useHostIp flag to true
+// and use the displayed address in the commant-prompt/terminal to run the app
 const useHostIp = false;
+
 const host = useHostIp ? ip.address() : "localhost";
 const port = 8085;
 const distDir = path.resolve(__dirname, "./dist");
@@ -23,7 +25,7 @@ module.exports = (env, options) => {
     // build output
     output: {
       // bundles all the js code into a single file
-      filename: "bundle.js",
+      filename: "bundle.[hash].js",
 
       // saves the bundled files in the following directory
       path: distDir,
@@ -31,12 +33,12 @@ module.exports = (env, options) => {
       publicPath: "",
     },
 
-    devServer: {
-      contentBase: distDir,
-      index: "index.html",
-      port: port,
-      host: host,
-    },
+    // devServer: {
+    //   contentBase: distDir,
+    //   index: "index.html",
+    //   port: port,
+    //   host: host,
+    // },
 
     optimization: {
       splitChunks: {
@@ -88,7 +90,7 @@ module.exports = (env, options) => {
     plugins: [
       // extract all css code into a new file
       new MiniCssExtractPlugin({
-        filename: "styles.css",
+        filename: "styles.[hash].css",
       }),
 
       // delete everyting from dist folder before each build
@@ -112,7 +114,7 @@ module.exports = (env, options) => {
         filename: "index.html",
       }),
 
-      // analyze what is inside your bundle
+      // analyze what is inside your bundle by uncommenting the following line
       // new BundleAnalyzerPlugin()
     ],
 
