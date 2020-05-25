@@ -25,6 +25,6 @@
     "rules": {
         "react/prop-types": 0,
         "spaced-comment": 2,
-        "no-console": "warn"
+        "no-console": "error"
     }
 }
