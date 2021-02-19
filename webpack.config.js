@@ -27,7 +27,7 @@ module.exports = (env, options) => {
       // bundles all the js code into a single file
       filename: "bundle.[name].[hash].js",
 
-      // saves the bundled files in the following directory
+      // save the bundled files in the following directory
       path: distDir,
 
       publicPath: "",
