@@ -1,17 +1,15 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const ip = require("ip");
 
-// dev server will run on localhost by default (localhost:8085), to run on local ip address instead, set useHostIp flag to true
-// and use the displayed address in the commant-prompt/terminal to run the app
+// dev server will run on localhost by default (localhost:8085)
+// to run on local ip address instead, set useHostIp flag to true
 const useHostIp = false;
 
 const host = useHostIp ? ip.address() : "localhost";
-const port = 8085;
+const port = 8080;
 const distDir = path.resolve(__dirname, "./dist");
 
 module.exports = (env, options) => {
@@ -25,7 +23,7 @@ module.exports = (env, options) => {
     // build output
     output: {
       // bundles all the js code into a single file
-      filename: "bundle.[name].[hash].js",
+      filename: "bundle.[name].[contenthash].js",
 
       // save the bundled files in the following directory
       path: distDir,
@@ -34,10 +32,7 @@ module.exports = (env, options) => {
     },
 
     devServer: {
-      contentBase: distDir,
-      index: "index.html",
-      port: port,
-      host: host,
+      port: port
     },
 
     optimization: {
@@ -73,28 +68,23 @@ module.exports = (env, options) => {
           }
         },
         {
-          test: /\.(scss|css)$/,
-          exclude: /node_modules/,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            test: /\.s[ac]ss$/i,
+            use: ["style-loader", "css-loader",  "sass-loader"],
         },
         {
           test: /\.xml$/i,
           use: "raw-loader",
-        },
-        {
-          test: /\.hbs$/i,
-          use: ["handlebars-loader"],
-        },
+        }
       ],
     },
     plugins: [
       // extract all css code into a new file
-      new MiniCssExtractPlugin({
-        filename: "styles.[hash].css",
-      }),
+      // new MiniCssExtractPlugin({
+      //   filename: "styles.[hash].css",
+      // }),
 
       // delete everyting from dist folder before each build
-      new CleanWebpackPlugin(),
+      // new CleanWebpackPlugin(),
 
       // generates html file in dist folder
       // if you need to add/modify content in the generated html file, do it in the template file referenced below
@@ -108,7 +98,7 @@ module.exports = (env, options) => {
         description: "description",
 
         // template file using which the final html file will be generated
-        template: "page-template.hbs",
+        template: "page-template.html",
 
         // name of the generated html file
         filename: "index.html",
@@ -118,6 +108,6 @@ module.exports = (env, options) => {
       // new BundleAnalyzerPlugin()
     ],
 
-    devtool: devtool,
+    // devtool: devtool,
   };
 };
