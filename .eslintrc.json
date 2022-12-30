@@ -30,7 +30,7 @@
     "rules": {
         "react/prop-types": 0,
         "spaced-comment": 2,
-        "no-console": 1,
+        "no-console": 2,
         "semi": 2
     }
 }
