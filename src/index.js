@@ -21,5 +21,5 @@ class MyComponent extends React.Component {
 }
 
 const wrapper = document.getElementById("container");
-wrapper ? ReactDOM.render(<MyComponent />, wrapper) : false;
+wrapper ? ReactDOM.render(<MyComponent />, wrapper) : false
 
