@@ -109,6 +109,6 @@ module.exports = {
   // uncomment to do debuggin in local environment
   // to be used only for local debugging
   // not recommended for production environment builds
-  // devtool: devtool,
+  devtool: devtool,
 
 };
