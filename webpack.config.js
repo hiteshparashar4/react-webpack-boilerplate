@@ -9,6 +9,7 @@ const ip = require("ip");
 // to run on local ip address instead, set useHostIp flag to true
 const useHostIp = false;
 
+const DEV = 'development';
 const host = useHostIp ? ip.address() : "localhost";
 const port = 8080;
 const distDir = path.resolve(__dirname, "./dist");
