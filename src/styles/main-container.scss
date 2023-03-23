@@ -4,10 +4,10 @@ $flex-direction: column;
 $justify-content: space-around;
 
 .main-container {
-    width: $width;
-    display: $display-flex;
-    flex-direction: $flex-direction;
-    justify-content: $justify-content;
-    margin: auto;
-    height: 100vh;
+  width: $width;
+  display: $display-flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  margin: auto;
+  height: 100vh;
 }

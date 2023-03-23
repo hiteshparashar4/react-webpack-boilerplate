@@ -9,11 +9,12 @@
     "build:dev": "webpack --mode development",
     "dev": "npm run build:dev",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development --hot --open",
+    "start": "webpack-dev-server --mode development --hot --open",   
+    "webpack": "webpack",
+    "prepare": "husky install",
     "lint": "eslint . --color --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix",
-    "webpack": "webpack",
-    "prepare": "husky install"
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md,json,scss} --config ./.prettierrc"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -38,6 +39,7 @@
     "husky": "^8.0.3",
     "ip": "^1.1.8",
     "mini-css-extract-plugin": "^2.7.5",
+    "prettier": "2.8.6",
     "raw-loader": "^4.0.2",
     "sass": "^1.59.3",
     "sass-loader": "^13.2.1",
