@@ -12,7 +12,7 @@ const useHostIp = false;
 const host = useHostIp ? ip.address() : "localhost";
 const port = 8080;
 const distDir = path.resolve(__dirname, "./dist");
-const devtool = 'source-map'
+const devtool = 'source-map';
 
 module.exports = {
 
@@ -22,7 +22,7 @@ module.exports = {
   // build output
   output: {
     // bundles all the js code into a single file
-    filename: "bundle.[name].[contenthash].js",
+    filename: "[name].bundle.[contenthash].js",
 
     // save the bundled files in the following directory
     path: distDir,
@@ -32,7 +32,8 @@ module.exports = {
   },
 
   devServer: {
-    port: port
+    port: port,
+    host: host
   },
 
   optimization: {
