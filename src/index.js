@@ -14,7 +14,7 @@ const App = () => {
             <Footer text="" />
         </div>
     );
-}
+};
 
 const wrapper = document.getElementById("container");
 wrapper ? ReactDOM.render(<App />, wrapper) : false;
