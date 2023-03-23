@@ -6,20 +6,16 @@ import Footer from './components/Footer/footer';
 import './styles/global.scss';
 
 
-class MyComponent extends React.Component {
-
-    render() {
-        return (
-            <div className='main-container'>
-                <Header text="Hi there" />
-                <Body text="If you are reading this it means your setup works correctly" />
-                <Footer text="" />
-            </div>
-        );
-    }
-
+const App = () => {
+    return (
+        <div className='main-container'>
+            <Header text="Hi there" />
+            <Body text="If you are reading this it means your setup works correctly" />
+            <Footer text="" />
+        </div>
+    );
 }
 
 const wrapper = document.getElementById("container");
-wrapper ? ReactDOM.render(<MyComponent />, wrapper) : false;
+wrapper ? ReactDOM.render(<App />, wrapper) : false;
 
